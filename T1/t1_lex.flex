@@ -33,7 +33,6 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 "readln"		{ return T1.READLN; }
 "writeln"		{ return T1.WRITELN; }
 "literal"		{ return T1.LITERAL; }
-"writeln"		{ return T1.WRITELN; }
 "+"|"-"|"or" 	{ return T1.ADOPT; }
 "*"|"div"|"mod"|"and" 	{ return T1.MULOP; }
 "not"		{ return T1.UNARY-EXPRESSION; }
