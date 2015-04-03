@@ -22,13 +22,41 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 
 %% 
 
-"int" 		{ return AsdrSample.INT; }
-"boolean"	{ return AsdrSample.BOOL; }
-"double"	{ return AsdrSample.DOUBLE; }
-"while"	 	{ return AsdrSample.WHILE; }
-"if"		{ return AsdrSample.IF; }
-"else"		{ return AsdrSample.ELSE; }
-"return"        { return AsdrSample.RETURN; }
+"and"       { return AsdrSample.AND;       }
+"array"     { return AsdrSample.ARRAY;     }
+"begin"     { return AsdrSample.BEGIN;     }
+"case"      { return AsdrSample.CASE;      }
+"const"     { return AsdrSample.CONST;     }
+"div"       { return AsdrSample.DIV;       }
+"do"        { return AsdrSample.DO;        }
+"downto"    { return AsdrSample.DOWNTO;    }
+"else"      { return AsdrSample.ELSE;      }
+"end"       { return AsdrSample.END;       }
+"file"      { return AsdrSample.FILE;      }
+"for"       { return AsdrSample.FOR;       }
+"function"  { return AsdrSample.FUNCTION;  }
+"goto"      { return AsdrSample.GOTO;      }
+"if"        { return AsdrSample.IF;        }
+"in"        { return AsdrSample.IN;        }
+"label"     { return AsdrSample.LABEL;     }
+"mod"       { return AsdrSample.MOD;       }
+"nil"       { return AsdrSample.NIL;       }
+"not"       { return AsdrSample.NOT;       }
+"of"        { return AsdrSample.OF;        }
+"or"        { return AsdrSample.OR;        }
+"packed"    { return AsdrSample.PACKED;    }
+"procedure" { return AsdrSample.PROCEDURE; }
+"program"   { return AsdrSample.PROGRAM;   }
+"record"    { return AsdrSample.RECORD;    }
+"repeat"    { return AsdrSample.REPEAT;    }
+"set"       { return AsdrSample.SET;       }
+"then"      { return AsdrSample.THEN;      }
+"to"        { return AsdrSample.TO;        }
+"type"      { return AsdrSample.TYPE;      }
+"until"     { return AsdrSample.UNTIL;     }
+"var"       { return AsdrSample.VAR;       }
+"while"     { return AsdrSample.WHILE;     }
+"with"      { return AsdrSample.WITH;      }
 
 [:jletter:][:jletterdigit:]* { return AsdrSample.IDENT; }  
 

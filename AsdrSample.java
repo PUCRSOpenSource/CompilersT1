@@ -6,23 +6,94 @@ public class AsdrSample {
 
         public static final int IDENT  = 301;
         public static final int NUM    = 302;
-        public static final int WHILE  = 303;
-        public static final int IF     = 304;
+        //public static final int WHILE  = 303;
+        //public static final int IF     = 304;
         public static final int INT    = 305;
         public static final int BOOL   = 306;
         public static final int DOUBLE = 307;
-        public static final int ELSE   = 308;
+        //public static final int ELSE   = 308;
         public static final int RETURN = 309;
+
+        public static final int AND       = 302;
+        public static final int ARRAY     = 303;
+        public static final int BEGIN     = 304;
+        public static final int CASE      = 305;
+        public static final int CONST     = 306;
+        public static final int DIV       = 307;
+        public static final int DO        = 308;
+        public static final int DOWNTO    = 309;
+        public static final int ELSE      = 310;
+        public static final int END       = 311;
+        public static final int FILE      = 312;
+        public static final int FOR       = 313;
+        public static final int FUNCTION  = 314;
+        public static final int GOTO      = 315;
+        public static final int IF        = 316;
+        public static final int IN        = 317;
+        public static final int LABEL     = 318;
+        public static final int MOD       = 319;
+        public static final int NIL       = 320;
+        public static final int NOT       = 321;
+        public static final int OF        = 322;
+        public static final int OR        = 323;
+        public static final int PACKED    = 324;
+        public static final int PROCEDURE = 325;
+        public static final int PROGRAM   = 326;
+        public static final int RECORD    = 327;
+        public static final int REPEAT    = 328;
+        public static final int SET       = 329;
+        public static final int THEN      = 330;
+        public static final int TO        = 331;
+        public static final int TYPE      = 332;
+        public static final int UNTIL     = 333;
+        public static final int VAR       = 334;
+        public static final int WHILE     = 335;
+        public static final int WITH      = 336;
 
         public static final String tokenList[] = {"IDENT",
                 "NUM", 
-                "WHILE", 
-                "IF", 
+                //"WHILE", 
+                //"IF", 
                 "INT",
                 "BOOL",
                 "DOUBLE",
+                //"ELSE",
+                "RETURN",
+                "AND",
+                "ARRAY",
+                "BEGIN",
+                "CASE",
+                "CONST",
+                "DIV",
+                "DO",
+                "DOWNTO",
                 "ELSE",
-                "RETURN"
+                "END",
+                "FILE",
+                "FOR",
+                "FUNCTION",
+                "GOTO",
+                "IF",
+                "IN",
+                "LABEL",
+                "MOD",
+                "NIL",
+                "NOT",
+                "OF",
+                "OR",
+                "PACKED",
+                "PROCEDURE",
+                "PROGRAM",
+                "RECORD",
+                "REPEAT",
+                "SET",
+                "THEN",
+                "TO",
+                "TYPE",
+                "UNTIL",
+                "VAR",
+                "WHILE",
+                "WITH"
         };
 
         /* referencia ao objeto Scanner gerado pelo JFLEX */
