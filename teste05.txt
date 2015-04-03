@@ -1,0 +1,13 @@
+int a, b, c;
+
+double calcularFrequencia(int aulas, int frequenc) {
+
+     double temp;
+
+     temp = 0;
+
+     return temp;
+
+   }
+
+  { a = 10; }
