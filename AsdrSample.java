@@ -108,212 +108,12 @@ public class AsdrSample {
                 check(PROGRAM);
 		ListaID();
                 check(';');
-                declaration-opc();
-                compound-stmt();
+                declarationopc();
+                compoundstmt();
                 check('.');
               
         }
-
-	private void declaration-opc(){
-		if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
-                        
-                if(laToken == VAR){
-                         check(VAR);
-                         Decl();   
-                        
-                }else{}
-                       
-                        
-
-	}
         
-        private void compound-stmt(){
-                if (debug) System.out.println("compound-stmt -> BEGIN statement-list END");
-                check(BEGIN);
-                statement-list();
-                check(END);                
-        }   
-        
-        private void statement-list(){
-                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
-                if(statement()){
-                        statement();
-                        check(';');
-                        statement-list();     
-                }else{
-                }
-        }   
-        
-        private statement(){
-                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
-                
-                if(laToken==IDENT){
-                        check(IDENT);
-                        check(':=');
-                        expression();
-                }else if(laToken==IF){
-                        check(IF);
-                        expression();
-                        check(THEN);
-                        statement();
-                        RestoIF();                        
-                        
-                }else if(laToken==WHILE){
-                        check(WHILE);
-                        expression();
-                        check(DO);
-                        statement();
-                }else if(laToken==BEGIN){
-                        compound-stmt();
-                }else if(laToken==READLN){
-                        check(READLN);
-                        check(IDENT);
-                }else if(laToken==WRITELN){
-                        check(WRITELN);
-                        print-list();
-                }else {
-                }
-        }
-        
-        private void print-list(){
-                if (debug) System.out.println("print-list -> LITERAL print-list2 | expression print-list2");
-                if(laToken==LITERAL){
-                        check(LITERAL);
-                        print-list();
-                }else{
-                        expression();
-                        print-list2();
-                }
-        }
-        
-         private void print-list2() {
-                if (debug) System.out.println("print-list2 -> , print-list &");                
-                 if(laToken==','){                       
-                        check(',');
-                        print-list();      
-                 }else{}
-                                      
-        }
-        
-        private void expression(){
-                if (debug) System.out.println("expression -> additive-expression relop additive-expression | additive-expression"); 
-                additive-expression();
-                if(laToken=='<' || laToken=='>' || laToken=='='){
-                     relop();
-                     additive-expression();   
-                }else {
-                }                
-        }
-        
-        private void relop(){
-                if (debug) System.out.println("relop -> <= | < | > | >= | = | <>");
-                if(laToken=='<'){
-                        check('<');
-                        restorelop();
-                }else if(laToken=='>'){
-                        check('>');
-                        restorelop();
-                }else if(laToken=='='){
-                        check('=');
-                }
-                
-        }
-        
-        private void restorelop(){
-                if(laToken=='='){
-                        check('=');
-                }else if(laToken=='>'){
-                        check('>');
-                }else{}
-        }
-        
-        private void additive-expression(){
-                if (debug) System.out.println("additive-expression -> addop term | term");
-                if(laToken=='+' || laToken=='-' || laToken=OR){
-                        addop();
-                        term();                        
-                }else{
-                        term();
-                }
-        }
-        
-        private void addop(){
-               if (debug) System.out.println("additive-expression -> addop term | term"); 
-                if(laToken=='+'){
-                        check('+');
-                }else if(laToken=='-'){
-                        check('-');
-                }else if(laToken==OR){
-                        check(OR);
-                }
-        }
-        
-        private void term(){
-                 if (debug) System.out.println("term -> term mulop unary-expression | unary-expression"); 
-                if(laToken=='*' || laToken==DIV || laToken==MOD || laToken==AND){
-                        mulop();
-                        unary-expression();
-                }else{
-                        unary-expression();
-                }
-        }
-        
-        private void mulop(){
-                if (debug) System.out.println("milop -> * | DIV | MOD | AND"); 
-                if(laToken=='*'){
-                       check('*'); 
-                }else if(laToken==DIV){
-                        check(DIV);
-                }else if(laToken==MOD){
-                        check(MOD);
-                }else if(laToken==AND){
-                        check(AND);
-                }
-                
-        }
-        
-        private void unary-expression(){
-                if (debug) System.out.println("unary-expression -> NOT unary-expression | factor"); 
-                
-                if(laToken==NOT){
-                        check(NOT);
-                        unary-expression();
-                }else{
-                        factor();
-                }
-                
-        }
-        
-        private void factor(){
-                if (debug) System.out.println("factor -> ( expression ) | ID | NUM | TRUE | FALSE"); 
-                if(laToken=='('){
-                        check('(');
-                        expression();
-                        check(')');
-                }else if(laToken==IDENT){
-                        check(IDENT);
-                }else if(laToken==NUM){
-                        check(NUM);
-                }else if(laToken==TRUE){
-                        check(TRUE);
-                }else if(laToken==FALSE){
-                        check(FALSE);
-                }
-        }
-        
-                
-        private void declaration-list(){
-                 if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
-                  if (laToken == IDENT ) {
-                         Decl();
-                         check(';');
-                         declaration-list();
-                  }else{
-                          
-                  }
-        }
-        
-   
         private void Decl() {
                 if (debug) System.out.println("Decl --> Tipo ListaID ;");                
                 ListaID();
@@ -347,6 +147,209 @@ public class AsdrSample {
                  
                 } else yyerror("Esperado: integer, boolean ");
         }
+
+	private void declarationopc(){
+		if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
+                        
+                if(laToken == VAR){
+                         check(VAR);
+                         Decl();   
+                        
+                }else{}
+                       
+                        
+
+	}
+        
+        private void compoundstmt(){
+                if (debug) System.out.println("compound-stmt -> BEGIN statement-list END");
+                check(BEGIN);
+                statementlist();
+                check(END);                
+        }   
+        
+        private void statementlist(){
+                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
+                if(statement()){
+                        statement();
+                        check(';');
+                        statementlist();     
+                }else{
+                }
+        }   
+        
+        private void statement(){
+                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
+                
+                if(laToken==IDENT){
+                        check(IDENT);
+                        check(':');
+                        check('=');
+                        expression();
+                }else if(laToken==IF){
+                        check(IF);
+                        expression();
+                        check(THEN);
+                        statement();
+                        RestoIF();                        
+                        
+                }else if(laToken==WHILE){
+                        check(WHILE);
+                        expression();
+                        check(DO);
+                        statement();
+                }else if(laToken==BEGIN){
+                        compoundstmt();
+                }else if(laToken==READLN){
+                        check(READLN);
+                        check(IDENT);
+                }else if(laToken==WRITELN){
+                        check(WRITELN);
+                        printlist();
+                }else {
+                }
+        }
+        
+        private void printlist(){
+                if (debug) System.out.println("print-list -> LITERAL print-list2 | expression print-list2");
+                if(laToken==LITERAL){
+                        check(LITERAL);
+                        printlist();
+                }else{
+                        expression();
+                        printlist2();
+                }
+        }
+        
+         private void printlist2() {
+                if (debug) System.out.println("print-list2 -> , print-list &");                
+                 if(laToken==','){                       
+                        check(',');
+                        printlist();      
+                 }else{}
+                                      
+        }
+        
+        private void expression(){
+                if (debug) System.out.println("expression -> additive-expression relop additive-expression | additive-expression"); 
+                additiveexpression();
+                if(laToken=='<' || laToken=='>' || laToken=='='){
+                     relop();
+                     additiveexpression();   
+                }else {
+                }                
+        }
+        
+        private void relop(){
+                if (debug) System.out.println("relop -> <= | < | > | >= | = | <>");
+                if(laToken=='<'){
+                        check('<');
+                        restorelop();
+                }else if(laToken=='>'){
+                        check('>');
+                        restorelop();
+                }else if(laToken=='='){
+                        check('=');
+                }
+                
+        }
+        
+        private void restorelop(){
+                if(laToken=='='){
+                        check('=');
+                }else if(laToken=='>'){
+                        check('>');
+                }else{}
+        }
+        
+        private void additiveexpression(){
+                if (debug) System.out.println("additive-expression -> addop term | term");
+                if(laToken=='+' || laToken=='-' || laToken=OR){
+                        addop();
+                        term();                        
+                }else{
+                        term();
+                }
+        }
+        
+        private void addop(){
+               if (debug) System.out.println("additive-expression -> addop term | term"); 
+                if(laToken=='+'){
+                        check('+');
+                }else if(laToken=='-'){
+                        check('-');
+                }else if(laToken==OR){
+                        check(OR);
+                }
+        }
+        
+        private void term(){
+                 if (debug) System.out.println("term -> term mulop unary-expression | unary-expression"); 
+                if(laToken=='*' || laToken==DIV || laToken==MOD || laToken==AND){
+                        mulop();
+                        unaryexpression();
+                }else{
+                        unaryexpression();
+                }
+        }
+        
+        private void mulop(){
+                if (debug) System.out.println("milop -> * | DIV | MOD | AND"); 
+                if(laToken=='*'){
+                       check('*'); 
+                }else if(laToken==DIV){
+                        check(DIV);
+                }else if(laToken==MOD){
+                        check(MOD);
+                }else if(laToken==AND){
+                        check(AND);
+                }
+                
+        }
+        
+        private void unaryexpression(){
+                if (debug) System.out.println("unary-expression -> NOT unary-expression | factor"); 
+                
+                if(laToken==NOT){
+                        check(NOT);
+                        unaryexpression();
+                }else{
+                        factor();
+                }
+                
+        }
+        
+        private void factor(){
+                if (debug) System.out.println("factor -> ( expression ) | ID | NUM | TRUE | FALSE"); 
+                if(laToken=='('){
+                        check('(');
+                        expression();
+                        check(')');
+                }else if(laToken==IDENT){
+                        check(IDENT);
+                }else if(laToken==NUM){
+                        check(NUM);
+                }else if(laToken==TRUE){
+                        check(TRUE);
+                }else if(laToken==FALSE){
+                        check(FALSE);
+                }
+        }
+        
+                
+        private void declarationlist(){
+                 if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
+                  if (laToken == IDENT ) {
+                         Decl();
+                         check(';');
+                         declarationlist();
+                  }else{
+                          
+                  }
+        }
+        
+   
+        
         
         
         private void RestoIF() {
