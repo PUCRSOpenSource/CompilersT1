@@ -225,7 +225,7 @@ public class AsdrSample {
         
         private void additive-expression(){
                 if (debug) System.out.println("additive-expression -> addop term | term");
-                if(laToken=='+' || laToken=='-' || laToken='OR'){
+                if(laToken=='+' || laToken=='-' || laToken=OR){
                         addop();
                         term();                        
                 }else{
@@ -235,6 +235,37 @@ public class AsdrSample {
         
         private void addop(){
                if (debug) System.out.println("additive-expression -> addop term | term"); 
+                if(laToken=='+'){
+                        check('+');
+                }else if(laToken=='-'){
+                        check('-');
+                }else if(laToken==OR){
+                        check(OR);
+                }
+        }
+        
+        private void term(){
+                 if (debug) System.out.println("term -> term mulop unary-expression | unary-expression"); 
+                if(laToken=='*' || laToken==DIV || laToken==MOD || laToken==AND){
+                        mulop();
+                        unary-expression();
+                }else{
+                        unary-expression();
+                }
+        }
+        
+        private void mulop(){
+                if (debug) System.out.println("milop -> * | DIV | MOD | AND"); 
+                
+        }
+        
+        private void unary-expression(){
+                if (debug) System.out.println("unary-expression -> NOT unary-expression | factor"); 
+                
+        }
+        
+        private void factor(){
+                if (debug) System.out.println("factor -> ( expression ) | ID | NUM | TRUE | FALSE"); 
                 
         }
         
