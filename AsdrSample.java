@@ -201,7 +201,7 @@ public class AsdrSample {
         private void expression(){
                 if (debug) System.out.println("expression -> additive-expression relop additive-expression | additive-expression"); 
                 additive-expression();
-                if(laToken=='<=' | laToken=='<' | laToken=='>' | laToken=='>=' | laToken=='=' | laToken=='<>' ){
+                if(laToken=='<=' || laToken=='<' || laToken=='>' || laToken=='>=' || laToken=='=' || laToken=='<>' ){
                      relop();
                      additive-expression();   
                 }else {
@@ -227,6 +227,17 @@ public class AsdrSample {
         }
         
         private void additive-expression(){
+                if (debug) System.out.println("additive-expression -> addop term | term");
+                if(laToken=='+' || laToken=='-' || laToken='OR'){
+                        addop();
+                        term();                        
+                }else{
+                        term();
+                }
+        }
+        
+        private void addop(){
+               if (debug) System.out.println("additive-expression -> addop term | term"); 
                 
         }
         
