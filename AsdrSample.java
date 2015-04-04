@@ -107,17 +107,17 @@ public class AsdrSample {
                 if (debug) System.out.println("program -> PROGRAM ID ';' declaration-opc compound-stmt '.'");
                 check(PROGRAM);
 		ListaID();
-                check(";");
+                check(';');
                 declaration-opc();
                 compound-stmt();
-                check(".");
+                check('.');
               
         }
 
 	private void declaration-opc(){
 		if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
                         
-                if(laToken == 'VAR'){
+                if(laToken == VAR){
                          check(VAR);
                          Decl();   
                         
@@ -207,18 +207,18 @@ public class AsdrSample {
         
         private void relop(){
                 if (debug) System.out.println("relop -> <= | < | > | >= | = | <>");
-                if(laToken=='<='){
-                        check('<=');
+                if(laToken=="<="){
+                        check("<=");
                 }else if(laToken=='<'){
                         check('<');
                 }else if(laToken=='>'){
                         check('>');
-                }else if(laToken=='>='){
-                        check('>=');
+                }else if(laToken==">="){
+                        check(">=");
                 }else if(laToken=='='){
                         check('=');
-                }else if(laToken=='<>'){
-                        check('<>');
+                }else if(laToken=="<>"){
+                        check("<>");
                 }
                 
         }
@@ -256,17 +256,45 @@ public class AsdrSample {
         
         private void mulop(){
                 if (debug) System.out.println("milop -> * | DIV | MOD | AND"); 
+                if(laToken=='*'){
+                       check('*'); 
+                }else if(laToken==DIV){
+                        check(DIV);
+                }else if(laToken==MOD){
+                        check(MOD);
+                }else if(laToken==AND){
+                        check(AND);
+                }
                 
         }
         
         private void unary-expression(){
                 if (debug) System.out.println("unary-expression -> NOT unary-expression | factor"); 
                 
+                if(laToken==NOT){
+                        check(NOT);
+                        unary-expression();
+                }else{
+                        factor();
+                }
+                
         }
         
         private void factor(){
                 if (debug) System.out.println("factor -> ( expression ) | ID | NUM | TRUE | FALSE"); 
-                
+                if(laToken=='('){
+                        check('(');
+                        expression();
+                        check(')');
+                }else if(laToken==IDENT){
+                        check(IDENT);
+                }else if(laToken==NUM){
+                        check(NUM);
+                }else if(laToken==TRUE){
+                        check(TRUE);
+                }else if(laToken==FALSE){
+                        check(FALSE);
+                }
         }
         
                 
@@ -308,10 +336,10 @@ public class AsdrSample {
         private void Tipo() { 
                 if (laToken == INTEGER) {
                         if (debug) System.out.println("Tipo --> int");
-                        check(INT);
+                        check(INTEGER);
                 } else if (laToken == BOOLEAN) {
                         if (debug) System.out.println("Tipo --> boolean");
-                        check(BOOL);
+                        check(BOOLEAN);
                  
                 } else yyerror("Esperado: integer, boolean ");
         }
