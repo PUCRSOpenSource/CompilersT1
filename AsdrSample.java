@@ -4,15 +4,12 @@ public class AsdrSample {
 
         private static final int BASE_TOKEN_NUM = 301;
 
-        public static final int IDENT  = 301;
-        public static final int NUM    = 302;
-        //public static final int WHILE  = 303;
-        //public static final int IF     = 304;
-        public static final int INT    = 305;
-        public static final int BOOL   = 306;
-        public static final int DOUBLE = 307;
-        //public static final int ELSE   = 308;
-        public static final int RETURN = 309;
+        public static final int IDENT  = 337;
+        public static final int NUM    = 338;        
+        public static final int INT    = 339;
+        public static final int BOOL   = 340;
+        public static final int DOUBLE = 307;       
+        public static final int RETURN = 341;
 
         public static final int AND       = 302;
         public static final int ARRAY     = 303;
@@ -51,13 +48,10 @@ public class AsdrSample {
         public static final int WITH      = 336;
 
         public static final String tokenList[] = {"IDENT",
-                "NUM", 
-                //"WHILE", 
-                //"IF", 
+                "NUM",                
                 "INT",
                 "BOOL",
-                "DOUBLE",
-                //"ELSE",
+                "DOUBLE",               
                 "RETURN",
                 "AND",
                 "ARRAY",
@@ -110,16 +104,83 @@ public class AsdrSample {
         }
 
         private void Prog() {
-                if (debug) System.out.println("Prog --> Decl Bloco");
-                Decl();
-                Bloco();
+                if (debug) System.out.println("program -> PROGRAM ID ';' declaration-opc compound-stmt '.'");
+                check(PROGRAM);
+		ListaID();
+                check(";");
+                declaration-opc();
+                compound-stmt();
+                check(".");
+              
         }
 
+	private void declaration-opc(){
+		if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
+                        
+                if(laToken == 'VAR'){
+                         check(VAR);
+                         Decl();   
+                        
+                }else{}
+                       
+                        
+
+	}
+        
+        private void compound-stmt(){
+                if (debug) System.out.println("compound-stmt -> BEGIN statement-list END");
+                check(BEGIN);
+                statement-list();
+                check(END);                
+        }   
+        
+        private void statement-list(){
+                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
+                if(statement()){
+                        statement();
+                        check(';');
+                        statement-list();     
+                }else{
+                }
+        }   
+        
+        private statement(){
+                if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
+                
+                if(laToken==IDENT){
+                        
+                }else if(laToken==IF){
+                        
+                }else if(laToken==WHILE){
+                        
+                }else if(){
+                        
+                }else if(){
+                        
+                }else if(){
+                        
+                }else {
+                }
+        }
+        
+                
+        private void declaration-list(){
+                 if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
+                  if (laToken == IDENT ) {
+                         Decl();
+                         check(';');
+                         declaration-list();
+                  }else{
+                          
+                  }
+        }
+        
+
         private void Decl() {
-                if (debug) System.out.println("Decl --> Tipo ListaID ;");
-                Tipo();
+                if (debug) System.out.println("Decl --> Tipo ListaID ;");                
                 ListaID();
-                check(';');
+                check(':');
+                Tipo();                          
         }
 
         private void ListaID(){
@@ -139,16 +200,14 @@ public class AsdrSample {
         }
 
         private void Tipo() { 
-                if (laToken == INT) {
+                if (laToken == INTEGER) {
                         if (debug) System.out.println("Tipo --> int");
                         check(INT);
-                } else if (laToken == BOOL) {
+                } else if (laToken == BOOLEAN) {
                         if (debug) System.out.println("Tipo --> boolean");
                         check(BOOL);
-                } else if (laToken == DOUBLE) {
-                        if (debug) System.out.println("Tipo --> double");
-                        check(DOUBLE);
-                } else yyerror("Esperado: int, boolean ou double");
+                 
+                } else yyerror("Esperado: integer, boolean ");
         }
 
         private void Bloco() {
