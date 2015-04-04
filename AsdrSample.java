@@ -156,10 +156,7 @@ public class AsdrSample {
                         expression();
                         check(THEN);
                         statement();
-                        if(laToken==ELSE){
-                                check(ELSE);
-                                statement();
-                        }
+                        RestoIF();                        
                         
                 }else if(laToken==WHILE){
                         check(WHILE);
@@ -287,7 +284,18 @@ public class AsdrSample {
                  
                 } else yyerror("Esperado: integer, boolean ");
         }
-
+        
+        
+        private void RestoIF() {
+                if (laToken == ELSE) {
+                        if (debug) System.out.println("RestoIF --> else Cmd ");
+                        check(ELSE);
+                        statement();
+                } else 
+                        if (debug) System.out.println("RestoIF --> vazio ");
+        }     
+        
+/*
         private void Bloco() {
                 if (debug) System.out.println("Bloco --> { Cmd }");
 
@@ -354,7 +362,7 @@ public class AsdrSample {
                         check(')');
                 }
                 else yyerror("Esperado operando (, identificador ou numero");
-        }
+        }*/
 
         private void check(int expected) {
                 if (laToken == expected)
