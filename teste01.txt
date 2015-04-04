@@ -1,4 +1,13 @@
-
-    int a; { a = 34; }
-
-
+program Meu_Primeiro_Projeto;
+var 
+nome: boolean; 
+idade: integer;
+BEGIN
+Writeln('Digite seu nome');
+Readln(nome);
+Writeln('Digite a sua idade');
+Readln(idade);
+Writeln('Meu nome e: ',nome);
+Writeln('Tenho ',idade,'anos');
+Readln;
+End.
