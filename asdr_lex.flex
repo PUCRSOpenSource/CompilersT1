@@ -1,6 +1,7 @@
 
 %%
 
+
 %{
   private int comment_count = 0;
 
@@ -17,46 +18,30 @@
 %integer
 %line
 %char
+%ignorecase
 
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 
 %% 
 
-"and"       { return AsdrSample.AND;       }
-"array"     { return AsdrSample.ARRAY;     }
-"begin"     { return AsdrSample.BEGIN;     }
-"case"      { return AsdrSample.CASE;      }
-"const"     { return AsdrSample.CONST;     }
-"div"       { return AsdrSample.DIV;       }
-"do"        { return AsdrSample.DO;        }
-"downto"    { return AsdrSample.DOWNTO;    }
-"else"      { return AsdrSample.ELSE;      }
-"end"       { return AsdrSample.END;       }
-"file"      { return AsdrSample.FILE;      }
-"for"       { return AsdrSample.FOR;       }
-"function"  { return AsdrSample.FUNCTION;  }
-"goto"      { return AsdrSample.GOTO;      }
-"if"        { return AsdrSample.IF;        }
-"in"        { return AsdrSample.IN;        }
-"label"     { return AsdrSample.LABEL;     }
-"mod"       { return AsdrSample.MOD;       }
-"nil"       { return AsdrSample.NIL;       }
-"not"       { return AsdrSample.NOT;       }
-"of"        { return AsdrSample.OF;        }
-"or"        { return AsdrSample.OR;        }
-"packed"    { return AsdrSample.PACKED;    }
-"procedure" { return AsdrSample.PROCEDURE; }
-"program"   { return AsdrSample.PROGRAM;   }
-"record"    { return AsdrSample.RECORD;    }
-"repeat"    { return AsdrSample.REPEAT;    }
-"set"       { return AsdrSample.SET;       }
-"then"      { return AsdrSample.THEN;      }
-"to"        { return AsdrSample.TO;        }
-"type"      { return AsdrSample.TYPE;      }
-"until"     { return AsdrSample.UNTIL;     }
-"var"       { return AsdrSample.VAR;       }
-"while"     { return AsdrSample.WHILE;     }
-"with"      { return AsdrSample.WITH;      }
+"integer" 		{ return AsdrSample.INTEGER; }
+"boolean"	{ return AsdrSample.BOOLEAN; }
+"while"	 	{ return AsdrSample.WHILE; }
+"if"		{ return AsdrSample.IF; }
+"else"		{ return AsdrSample.ELSE; }
+"var"		{ return AsdrSample.VAR; }
+"program"		{ return AsdrSample.PROGRAM; }
+"readln"		{ return AsdrSample.READLN; }
+"writeln"		{ return AsdrSample.WRITELN; }
+"literal"		{ return AsdrSample.LITERAL; }
+"or" 	{ return AsdrSample.OR; }
+"div" 	{ return AsdrSample.DIV; }
+"mod" 	{ return AsdrSample.MOD; }
+"and" 	{ return AsdrSample.AND; }
+"not"		{ return AsdrSample.NOT; }
+"true"		{ return AsdrSample.TRUE; }
+"false"		{ return AsdrSample.FALSE; }
+
 
 [:jletter:][:jletterdigit:]* { return AsdrSample.IDENT; }  
 
@@ -69,8 +54,8 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 "}" |
 "(" |
 ")" |
-"+" |
-"="    	{ return yytext().charAt(0); } 
+":" |
+":="    	{ return yytext().charAt(0); } 
 
 
 {WHITE_SPACE_CHAR}+ { }
