@@ -148,19 +148,86 @@ public class AsdrSample {
                 if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
                 
                 if(laToken==IDENT){
-                        
+                        check(IDENT);
+                        check(':=');
+                        expression();
                 }else if(laToken==IF){
+                        check(IF);
+                        expression();
+                        check(THEN);
+                        statement();
+                        if(laToken==ELSE){
+                                check(ELSE);
+                                statement();
+                        }
                         
                 }else if(laToken==WHILE){
-                        
-                }else if(){
-                        
-                }else if(){
-                        
-                }else if(){
-                        
+                        check(WHILE);
+                        expression();
+                        check(DO);
+                        statement();
+                }else if(laToken==BEGIN){
+                        compound-stmt();
+                }else if(laToken==READLN){
+                        check(READLN);
+                        check(IDENT);
+                }else if(laToken==WRITELN){
+                        check(WRITELN);
+                        print-list();
                 }else {
                 }
+        }
+        
+        private void print-list(){
+                if (debug) System.out.println("print-list -> LITERAL print-list2 | expression print-list2");
+                if(laToken==LITERAL){
+                        check(LITERAL);
+                        print-list();
+                }else{
+                        expression();
+                        print-list2();
+                }
+        }
+        
+         private void print-list2() {
+                if (debug) System.out.println("print-list2 -> , print-list &");                
+                 if(laToken==','){                       
+                        check(',');
+                        print-list();      
+                 }else{}
+                                      
+        }
+        
+        private void expression(){
+                if (debug) System.out.println("expression -> additive-expression relop additive-expression | additive-expression"); 
+                additive-expression();
+                if(laToken=='<=' | laToken=='<' | laToken=='>' | laToken=='>=' | laToken=='=' | laToken=='<>' ){
+                     relop();
+                     additive-expression();   
+                }else {
+                }                
+        }
+        
+        private void relop(){
+                if (debug) System.out.println("relop -> <= | < | > | >= | = | <>");
+                if(laToken=='<='){
+                        check('<=');
+                }else if(laToken=='<'){
+                        check('<');
+                }else if(laToken=='>'){
+                        check('>');
+                }else if(laToken=='>='){
+                        check('>=');
+                }else if(laToken=='='){
+                        check('=');
+                }else if(laToken=='<>'){
+                        check('<>');
+                }
+                
+        }
+        
+        private void additive-expression(){
+                
         }
         
                 
@@ -175,7 +242,7 @@ public class AsdrSample {
                   }
         }
         
-
+   
         private void Decl() {
                 if (debug) System.out.println("Decl --> Tipo ListaID ;");                
                 ListaID();
