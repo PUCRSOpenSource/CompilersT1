@@ -4,90 +4,53 @@ public class AsdrSample {
 
         private static final int BASE_TOKEN_NUM = 301;
 
-        public static final int IDENT  = 337;
-        public static final int NUM    = 338;        
-        public static final int INT    = 339;
-        public static final int BOOL   = 340;
-        public static final int DOUBLE = 307;       
-        public static final int RETURN = 341;
-
-        public static final int AND       = 302;
-        public static final int ARRAY     = 303;
-        public static final int BEGIN     = 304;
-        public static final int CASE      = 305;
-        public static final int CONST     = 306;
-        public static final int DIV       = 307;
-        public static final int DO        = 308;
-        public static final int DOWNTO    = 309;
-        public static final int ELSE      = 310;
-        public static final int END       = 311;
-        public static final int FILE      = 312;
-        public static final int FOR       = 313;
-        public static final int FUNCTION  = 314;
-        public static final int GOTO      = 315;
-        public static final int IF        = 316;
-        public static final int IN        = 317;
-        public static final int LABEL     = 318;
+        public static final int IDENT  = 301;
+        public static final int NUM    = 302;        
+        public static final int INTEGER    = 303;
+        public static final int BOOLEAN   = 304;
+        public static final int PROGRAM       = 305;
+        public static final int VAR       = 306;
+        public static final int BEGIN       = 307;
+        public static final int END       = 308;
+        public static final int IF       = 309;
+        public static final int THEN       = 310;
+        public static final int ELSE       = 311;
+        public static final int WHILE       = 312;
+        public static final int DO       = 313;
+        public static final int READLN       = 314;
+        public static final int WRITELN       = 315;
+        public static final int LITERAL       = 316;
+        public static final int OR       = 317;
+        public static final int DIV       = 318;
         public static final int MOD       = 319;
-        public static final int NIL       = 320;
+        public static final int AND       = 320;
         public static final int NOT       = 321;
-        public static final int OF        = 322;
-        public static final int OR        = 323;
-        public static final int PACKED    = 324;
-        public static final int PROCEDURE = 325;
-        public static final int PROGRAM   = 326;
-        public static final int RECORD    = 327;
-        public static final int REPEAT    = 328;
-        public static final int SET       = 329;
-        public static final int THEN      = 330;
-        public static final int TO        = 331;
-        public static final int TYPE      = 332;
-        public static final int UNTIL     = 333;
-        public static final int VAR       = 334;
-        public static final int WHILE     = 335;
-        public static final int WITH      = 336;
-
+        public static final int TRUE       = 322;
+        public static final int FALSE       = 323;
+        
         public static final String tokenList[] = {"IDENT",
-                "NUM",                
-                "INT",
-                "BOOL",
-                "DOUBLE",               
-                "RETURN",
-                "AND",
-                "ARRAY",
-                "BEGIN",
-                "CASE",
-                "CONST",
-                "DIV",
-                "DO",
-                "DOWNTO",
-                "ELSE",
-                "END",
-                "FILE",
-                "FOR",
-                "FUNCTION",
-                "GOTO",
-                "IF",
-                "IN",
-                "LABEL",
-                "MOD",
-                "NIL",
-                "NOT",
-                "OF",
-                "OR",
-                "PACKED",
-                "PROCEDURE",
-                "PROGRAM",
-                "RECORD",
-                "REPEAT",
-                "SET",
-                "THEN",
-                "TO",
-                "TYPE",
-                "UNTIL",
-                "VAR",
-                "WHILE",
-                "WITH"
+"NUM",       
+"INTEGER",
+"BOOLEAN",
+"PROGRAM",
+"VAR",
+"BEGIN",
+"END",
+"IF",
+"THEN",
+"ELSE",
+"WHILE",
+"DO",
+"READLN",
+"WRITELN",
+"LITERAL",
+"OR",
+"DIV",
+"MOD",
+"AND",
+"NOT",
+"TRUE",
+"FALSE"
         };
 
         /* referencia ao objeto Scanner gerado pelo JFLEX */
@@ -170,7 +133,7 @@ public class AsdrSample {
         
         private void statementlist(){
                 if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
-                if(statement()){
+                if(laToken==IDENT | laToken==IF | laToken==WHILE | laToken==BEGIN | laToken==READLN | laToken==WRITELN){
                         statement();
                         check(';');
                         statementlist();     
@@ -233,7 +196,7 @@ public class AsdrSample {
         private void expression(){
                 if (debug) System.out.println("expression -> additive-expression relop additive-expression | additive-expression"); 
                 additiveexpression();
-                if(laToken=='<' || laToken=='>' || laToken=='='){
+                if((laToken == '<') | (laToken == '>') | (laToken == '=')){
                      relop();
                      additiveexpression();   
                 }else {
@@ -264,7 +227,7 @@ public class AsdrSample {
         
         private void additiveexpression(){
                 if (debug) System.out.println("additive-expression -> addop term | term");
-                if(laToken=='+' || laToken=='-' || laToken=OR){
+                if((laToken=='+') | (laToken=='-') | (laToken==OR)){
                         addop();
                         term();                        
                 }else{
