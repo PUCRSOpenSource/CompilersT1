@@ -1,0 +1,107 @@
+TERMINAIS:
+ID
+NUM
+VAR
+INTEGER
+BOOLEAN
+
+PROGRAM
+BEGIN
+END
+IF
+THEN
+ELSE
+WHILE
+DO
+READLN
+WRITELN
+
+,
+;
+.
+
+relop {
+	<=
+	<
+	>
+	>=
+	=
+	<>
+}
+
+addop {
+	+
+	-
+	OR
+}
+
+mulop {
+	*
+	DIV
+	MOD
+	AND
+}
+
+NOT
+TRUE
+FALSE
+LITERAL
+
+GRAMATICA:
+
+program -> PROGRAM ID ';' declaration-opc compound-stmt '.'
+
+declaration-opc -> VAR declaration-list | vazio
+
+declaration-list -> declaration ';' declaration-list | vazio
+
+declaration -> id-list ':' type
+
+id-list -> ID id-list-rest
+
+id-list-rest -> ',' id-list | vazio
+
+type -> INTEGER | BOOLEAN
+
+compound-stmt -> BEGIN statement-list END
+
+statement-list -> statement statement-list-rest
+
+statement-list-rest -> ';' statement-list | vazio
+
+statement -> ID := expression
+| IF expression THEN statement else-statement                     
+| WHILE expression DO statement
+| compound-stmt
+| READLN ID
+| WRITELN print-list
+| vazio
+
+else-statement -> ELSE statement | vazio
+
+print-list -> LITERAL print-list2
+ | expression print-list2
+
+print-list2 -> , print-list | vazio
+
+expression -> additive-expression expression2
+
+expression2 -> relop additive-expression | vazio
+
+relop -> <= | < | > | >= | = | <>
+
+additive-expression -> term additive-expression2
+
+additive-expression2 -> addop additive-expression | vazio
+
+addop -> + | - | OR
+
+term -> unary-expression term2
+
+term2 -> mulop term | vazio
+
+mulop -> * | DIV | MOD | AND
+
+unary-expression -> NOT unary-expression | factor
+
+factor -> ( expression ) | ID | NUM | TRUE | FALSE
