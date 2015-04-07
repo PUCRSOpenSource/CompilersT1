@@ -69,7 +69,7 @@ public class AsdrSample {
         private void Prog() {
                 if (debug) System.out.println("program -> PROGRAM ID ';' declaration-opc compound-stmt '.'");
                 check(PROGRAM);
-		ListaID();
+		      ListaID();
                 check(';');
                 declarationopc();
                 compoundstmt();
@@ -123,6 +123,17 @@ public class AsdrSample {
                         
 
 	}
+
+       private void declarationlist(){
+            if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
+                if (laToken == IDENT ) {
+                        Decl();
+                        check(';');
+                        declarationopc();
+                  }else{
+                          
+                  }
+        }
         
         private void compoundstmt(){
                 if (debug) System.out.println("compound-stmt -> BEGIN statement-list END");
@@ -144,12 +155,7 @@ public class AsdrSample {
         private void statement(){
                 if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
                 
-                if(laToken==IDENT){
-                        ListaID();
-                        check(':');
-                        check('=');
-                        expression();
-                }else if(laToken==IF){
+                if(laToken==IF){
                         check(IF);
                         expression();
                         check(THEN);
@@ -161,6 +167,7 @@ public class AsdrSample {
                         expression();
                         check(DO);
                         statement();
+
                 }else if(laToken==BEGIN){
                         compoundstmt();
                 }else if(laToken==READLN){
@@ -169,8 +176,13 @@ public class AsdrSample {
                 }else if(laToken==WRITELN){
                         check(WRITELN);
                         printlist();
-                }else {
-                }
+                }else if (laToken==IDENT){
+                        ListaID();
+                        check(':');
+                        check('=');
+                        expression();
+                    
+                } else {}
         }
         
         private void printlist(){
@@ -298,22 +310,7 @@ public class AsdrSample {
                         check(FALSE);
                 }
         }
-        
                 
-        private void declarationlist(){
-                 if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
-                  if (laToken == IDENT ) {
-                         Decl();
-                         check(';');
-                         declarationopc();
-                  }else{
-                          
-                  }
-        }
-        
-   
-        
-        
         
         private void RestoIF() {
                 if (laToken == ELSE) {
