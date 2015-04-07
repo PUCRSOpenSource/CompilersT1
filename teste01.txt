@@ -2,11 +2,11 @@ program Meu_Primeiro_Projeto;
 var nome: boolean; 
 var idade: integer;
 BEGIN
-Writeln('Digite seu nome');
+Writeln(Digite seu nome);
 Readln(nome);
-Writeln('Digite a sua idade');
+Writeln(Digite a sua idade);
 Readln(idade);
-Writeln('Meu nome e: ',nome);
-Writeln('Tenho ',idade,'anos');
+Writeln(Meu nome e: ,nome);
+Writeln(Tenho ,idade,anos);
 Readln;
 End.
