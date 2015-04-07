@@ -116,7 +116,7 @@ public class AsdrSample {
                         
                 if(laToken == VAR){
                          check(VAR);
-                         Decl();   
+                         declarationlist();
                         
                 }else{}
                        
@@ -145,7 +145,7 @@ public class AsdrSample {
                 if (debug) System.out.println("statement-list -> statement ';' statement-list | statement");
                 
                 if(laToken==IDENT){
-                        check(IDENT);
+                        ListaID();
                         check(':');
                         check('=');
                         expression();
@@ -289,7 +289,7 @@ public class AsdrSample {
                         expression();
                         check(')');
                 }else if(laToken==IDENT){
-                        check(IDENT);
+                        ListaID();
                 }else if(laToken==NUM){
                         check(NUM);
                 }else if(laToken==TRUE){
@@ -305,7 +305,7 @@ public class AsdrSample {
                   if (laToken == IDENT ) {
                          Decl();
                          check(';');
-                         declarationlist();
+                         declarationopc();
                   }else{
                           
                   }
@@ -477,4 +477,3 @@ public class AsdrSample {
         }
 
 }
-
