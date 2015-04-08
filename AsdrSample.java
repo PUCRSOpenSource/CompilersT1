@@ -160,6 +160,7 @@ public class AsdrSample {
                         expression();
                         check(THEN);
                         statement();
+                        check(';');
                         RestoIF();                        
                         
                 }else if(laToken==WHILE){
@@ -182,7 +183,9 @@ public class AsdrSample {
                         check('=');
                         expression();
                     
-                } else {}
+                } else {                        
+                        
+                }
         }
         
         private void printlist(){
@@ -321,74 +324,6 @@ public class AsdrSample {
                         if (debug) System.out.println("RestoIF --> vazio ");
         }     
         
-/*
-        private void Bloco() {
-                if (debug) System.out.println("Bloco --> { Cmd }");
-
-                check('{');
-                Cmd();
-                check('}');
-        }
-
-        private void Cmd() {
-                if (laToken == '{') {
-                        if (debug) System.out.println("Cmd --> Bloco");
-                        Bloco();
-                }
-
-                else if (laToken == WHILE) {
-                        if (debug) System.out.println("Cmd --> WHILE E Cmd");
-                        check(WHILE);
-                        E();
-                        Cmd();
-                }
-                else if (laToken == IDENT) {
-                        if (debug) System.out.println("Cmd --> ident = E ;");
-                        check(IDENT);
-                        check('=');
-                        E();
-                        check(';');
-                }
-                else if (laToken == IF) {
-                        if (debug) System.out.println("Cmd --> if E Cmd RestoIF");
-                        check(IF);
-                        check('(');
-                        E();
-                        check(')');
-                        Cmd();
-                        RestoIF();
-                }
-                else yyerror("Esperado {, if, while ou identificador");
-        }
-
-        private void RestoIF() {
-                if (laToken == ELSE) {
-                        if (debug) System.out.println("RestoIF --> else Cmd ");
-                        check(ELSE);
-                        Cmd();
-                } else 
-                        if (debug) System.out.println("RestoIF --> vazio ");
-        }     
-
-
-
-        private void E() {
-                if (laToken == IDENT) {
-                        if (debug) System.out.println("E --> IDENT");
-                        check(IDENT);
-                }
-                else if (laToken == NUM) {
-                        if (debug) System.out.println("E --> NUM");
-                        check(NUM);
-                }
-                else if (laToken == '(') {
-                        if (debug) System.out.println("E --> ( E )");
-                        check('(');
-                        E();        
-                        check(')');
-                }
-                else yyerror("Esperado operando (, identificador ou numero");
-        }*/
 
         private void check(int expected) {
                 if (laToken == expected)
@@ -462,14 +397,7 @@ public class AsdrSample {
                 catch (java.io.FileNotFoundException e) {
                         System.out.println("File not found : \""+args[0]+"\"");
                 }
-                //catch (java.io.IOException e) {
-                        //System.out.println("IO error scanning file \""+args[0]+"\"");
-                        //System.out.println(e);
-                //}
-                //catch (Exception e) {
-                        //System.out.println("Unexpected exception:");
-                        //e.printStackTrace();
-                //}
+               
 
         }
 
