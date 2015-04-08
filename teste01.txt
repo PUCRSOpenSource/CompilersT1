@@ -1,9 +1,15 @@
 program Meu_Primeiro_Projeto;
 
-var nome : integer ;
+var nome : integer;
+bla : boolean;
 begin
 
-readln oi ;
+writeln digite, qualqueroutracoisa;
+readln nome;
+writeln digite;
+readln idade;
+
+if 3 < 4 then readln idade; else writeln dani;
 
 end
 .

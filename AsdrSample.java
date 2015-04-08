@@ -4,53 +4,53 @@ public class AsdrSample {
 
         private static final int BASE_TOKEN_NUM = 301;
 
-        public static final int IDENT  = 301;
-        public static final int NUM    = 302;        
-        public static final int INTEGER    = 303;
-        public static final int BOOLEAN   = 304;
-        public static final int PROGRAM       = 305;
-        public static final int VAR       = 306;
-        public static final int BEGIN       = 307;
-        public static final int END       = 308;
-        public static final int IF       = 309;
-        public static final int THEN       = 310;
-        public static final int ELSE       = 311;
-        public static final int WHILE       = 312;
-        public static final int DO       = 313;
-        public static final int READLN       = 314;
-        public static final int WRITELN       = 315;
-        public static final int LITERAL       = 316;
-        public static final int OR       = 317;
-        public static final int DIV       = 318;
-        public static final int MOD       = 319;
-        public static final int AND       = 320;
-        public static final int NOT       = 321;
-        public static final int TRUE       = 322;
-        public static final int FALSE       = 323;
+        public static final int IDENT   = 301;
+        public static final int NUM     = 302;
+        public static final int INTEGER = 303;
+        public static final int BOOLEAN = 304;
+        public static final int PROGRAM = 305;
+        public static final int VAR     = 306;
+        public static final int BEGIN   = 307;
+        public static final int END     = 308;
+        public static final int IF      = 309;
+        public static final int THEN    = 310;
+        public static final int ELSE    = 311;
+        public static final int WHILE   = 312;
+        public static final int DO      = 313;
+        public static final int READLN  = 314;
+        public static final int WRITELN = 315;
+        public static final int LITERAL = 316;
+        public static final int OR      = 317;
+        public static final int DIV     = 318;
+        public static final int MOD     = 319;
+        public static final int AND     = 320;
+        public static final int NOT     = 321;
+        public static final int TRUE    = 322;
+        public static final int FALSE   = 323;
         
         public static final String tokenList[] = {"IDENT",
-"NUM",       
-"INTEGER",
-"BOOLEAN",
-"PROGRAM",
-"VAR",
-"BEGIN",
-"END",
-"IF",
-"THEN",
-"ELSE",
-"WHILE",
-"DO",
-"READLN",
-"WRITELN",
-"LITERAL",
-"OR",
-"DIV",
-"MOD",
-"AND",
-"NOT",
-"TRUE",
-"FALSE"
+                "NUM",       
+                "INTEGER",
+                "BOOLEAN",
+                "PROGRAM",
+                "VAR",
+                "BEGIN",
+                "END",
+                "IF",
+                "THEN",
+                "ELSE",
+                "WHILE",
+                "DO",
+                "READLN",
+                "WRITELN",
+                "LITERAL",
+                "OR",
+                "DIV",
+                "MOD",
+                "AND",
+                "NOT",
+                "TRUE",
+                "FALSE"
         };
 
         /* referencia ao objeto Scanner gerado pelo JFLEX */
@@ -69,7 +69,7 @@ public class AsdrSample {
         private void Prog() {
                 if (debug) System.out.println("program -> PROGRAM ID ';' declaration-opc compound-stmt '.'");
                 check(PROGRAM);
-		      ListaID();
+                      ListaID();
                 check(';');
                 declarationopc();
                 compoundstmt();
@@ -111,8 +111,8 @@ public class AsdrSample {
                 } else yyerror("Esperado: integer, boolean ");
         }
 
-	private void declarationopc(){
-		if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
+        private void declarationopc(){
+                if (debug) System.out.println("declaration-opc -> VAR declaration-list | & ");
                         
                 if(laToken == VAR){
                          check(VAR);
@@ -122,14 +122,14 @@ public class AsdrSample {
                        
                         
 
-	}
+        }
 
        private void declarationlist(){
             if (debug) System.out.println("declaration-list -> declaration ';' declaration-list | declaration ';' ");    
                 if (laToken == IDENT ) {
                         Decl();
                         check(';');
-                        declarationopc();
+                        declarationlist();
                   }else{
                           
                   }

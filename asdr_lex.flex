@@ -24,26 +24,27 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 
 %% 
 
-"integer" 		{ return AsdrSample.INTEGER; }
-"boolean"	{ return AsdrSample.BOOLEAN; }
-"while"	 	{ return AsdrSample.WHILE; }
-"if"		{ return AsdrSample.IF; }
-"else"		{ return AsdrSample.ELSE; }
-"var"		{ return AsdrSample.VAR; }
-"begin"		{ return AsdrSample.BEGIN; }
-"end"		{ return AsdrSample.END; }
-"program"		{ return AsdrSample.PROGRAM; }
-"readln"		{ return AsdrSample.READLN; }
-"writeln"		{ return AsdrSample.WRITELN; }
-"literal"		{ return AsdrSample.LITERAL; }
-"or" 	{ return AsdrSample.OR; }
-"div" 	{ return AsdrSample.DIV; }
-"mod" 	{ return AsdrSample.MOD; }
-"and" 	{ return AsdrSample.AND; }
-"not"		{ return AsdrSample.NOT; }
-"true"		{ return AsdrSample.TRUE; }
-"false"		{ return AsdrSample.FALSE; }
-
+"INTEGER" { return AsdrSample.INTEGER; }
+"BOOLEAN" { return AsdrSample.BOOLEAN; }
+"PROGRAM" { return AsdrSample.PROGRAM; }
+"VAR"     { return AsdrSample.VAR; }
+"BEGIN"   { return AsdrSample.BEGIN; }
+"END"     { return AsdrSample.END; }
+"IF"      { return AsdrSample.IF; }
+"THEN"    { return AsdrSample.THEN; }
+"ELSE"    { return AsdrSample.ELSE; }
+"WHILE"   { return AsdrSample.WHILE; }
+"DO"      { return AsdrSample.DO; }
+"READLN"  { return AsdrSample.READLN; }
+"WRITELN" { return AsdrSample.WRITELN; }
+"LITERAL" { return AsdrSample.LITERAL; }
+"OR"      { return AsdrSample.OR; }
+"DIV"     { return AsdrSample.DIV; }
+"MOD"     { return AsdrSample.MOD; }
+"AND"     { return AsdrSample.AND; }
+"NOT"     { return AsdrSample.NOT; }
+"TRUE"    { return AsdrSample.TRUE; }
+"FALSE"   { return AsdrSample.FALSE; }
 
 
 [:jletter:][:jletterdigit:]* { return AsdrSample.IDENT; }  
@@ -52,12 +53,15 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 
 
 ";" |
+"=" |
 "," |
 "{" |
 "}" |
 "(" |
 ")" |
 ":" |
+"<" |
+">" |
 "."    	{ return yytext().charAt(0); } 
 
 
