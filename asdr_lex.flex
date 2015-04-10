@@ -3,15 +3,16 @@
 
 
 %{
+  
   private int comment_count = 0;
-
+	
   private AsdrSample yyparser;
 
   public Yylex(java.io.Reader r, AsdrSample yyparser) {
     this(r);
     this.yyparser = yyparser;
   }
-
+	
 
 %} 
 
@@ -21,6 +22,7 @@
 %ignorecase
 
 WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
+GeneralComment   = "{"([^*]|\*+[^*/])*+"}"
 
 %% 
 
@@ -52,11 +54,11 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 [0-9]+ 	{ return AsdrSample.NUM; }
 
 
+
+
 ";" |
 "=" |
 "," |
-"{" |
-"}" |
 "(" |
 ")" |
 ":" |
@@ -65,10 +67,10 @@ WHITE_SPACE_CHAR=[\n\r\ \t\b\012]
 "."    	{ return yytext().charAt(0); } 
 
 
+{GeneralComment} { }
 {WHITE_SPACE_CHAR}+ { }
 
 . { System.out.println("Erro lexico: caracter invalido: <" + yytext() + ">"); }
-
 
 
 
