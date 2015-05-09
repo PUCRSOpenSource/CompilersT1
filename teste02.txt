@@ -1,15 +1,10 @@
 program Meu_Primeiro_Projeto;
 
-var nome : integer;
-bla : boolean;
+var x : integer;
 begin
 
-writeln digite, qualqueroutracoisa;
-readln nome;
-writeln digite;
-readln idade;
 while x <= 5 do
-if 3 < 4 then readln idade; else writeln dani;
+writeln x;
 
 
 end

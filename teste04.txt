@@ -1,5 +1,11 @@
+program Meu_Primeiro_Projeto;
+
+var x : integer
+begin
+
+while x <= 5 do
+writeln x;
 
 
-    int a, b  { while (b) a= 34; }
-   
-
+end
+.

@@ -1,13 +1,11 @@
-int a, b, c;
+program Meu_Primeiro_Projeto;
 
-double calcularFrequencia(int aulas, int frequenc) {
+var x : integer;
+begin
 
-     double temp;
+while x <= 5
+writeln x;
 
-     temp = 0;
 
-     return temp;
-
-   }
-
-  { a = 10; }
+end
+.

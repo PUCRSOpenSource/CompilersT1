@@ -1,16 +1,8 @@
 program Meu_Primeiro_Projeto;
 
-var nome : integer;
-bla : boolean;
 begin
-{ teste2 nada a fazer }
-writeln digite, qualqueroutracoisa; { teste maldito }
-readln nome;
-writeln digite;
-readln idade;
-while x <= 5 do
-if 3 < 4 then readln idade; else writeln dani;
-{ teste }
+
+
 
 end
 .
